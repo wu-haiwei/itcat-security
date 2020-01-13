@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itcat.repository.UserMenuRelationDao" >
+
+    <select id="listUserPermissions" resultType="java.lang.String">
+        SELECT
+            t4.permission
+        FROM
+            t_user_info t1,
+            t_role_user_relation t2,
+            t_role_menu_relation t3,
+            t_menu t4
+        WHERE
+            t1.user_id = t2.user_id
+            AND t2.role_id = t3.role_id
+            AND t3.menu_id = t4.menu_id
+            AND t1.user_id = #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>
